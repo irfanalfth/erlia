@@ -14,9 +14,10 @@ class Dashboardpendidik extends CI_Controller
 
     function index()
     {
-        $data['mahasiswa'] = count($this->Global_model->get_data([], 'mahasiswa', true));
-        $data['dosen'] = count($this->Global_model->get_data([],'dosen', true));
-        $data['_view'] = 'dashboardakademik';
+        $data['pendidik'] = $this->Global_model->get_data(['user_id' => $this->session->userdata('user_id')], 'user', false);
+
+        $data['_view'] = 'dashboardpendidik/index';
+
         $this->load->view('layouts/main', $data);
     }
 }
