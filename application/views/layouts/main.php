@@ -86,9 +86,12 @@
 
                             <!-- pendidik -->
                         <?php } elseif ($this->session->userdata('level') == 'Pendidik') { ?>
+                            <?php 
+                                $cekBio = $CI->Global_model->get_data(['pendidik_id' => $CI->session->userdata('user_id')], 'sub_kelas');
+                            ?>
                             <li class="menu-header">Pendidik</li>
                             <li class="<?php echo (empty($this->uri->segment(1)) || $this->uri->segment(1) == 'dashboardpendidik') ? 'active' : ''; ?>">
-                                <a class="nav-link" href="<?php echo base_url('dashboardpendidik'); ?>">
+                                <a class="nav-link" href="<?php echo base_url('dashboardpendidik'); // ($cekBio != null) ? base_url('biodata/bioPendidik') :  base_url('dashboardpendidik'); ?>">
                                     <i class="fas fa-fire"></i> <span>Dashboard</span>
                                 </a>
                             </li>
@@ -100,7 +103,7 @@
                                 <li class="<?php echo ($this->uri->segment(1) == 'p_mapel') ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url('p_mapel/index'); ?>"><i class="fas fa-sticky-note"></i> <span>Mata Pelajaran</span></a></li>
                             <?php } ?>
                     
-                            <li class="<?php echo ($this->uri->segment(1) == 'p_jadwal') ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url('p_jadwal/index'); ?>"><i class="fas fa-clock"></i> <span>Jadwal</span></a></li>
+                            <!-- <li class="<?php echo ($this->uri->segment(1) == 'p_jadwal') ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url('p_jadwal/index'); ?>"><i class="fas fa-clock"></i> <span>Jadwal</span></a></li> -->
 
                             <?php
                             $cekWali = $CI->Global_model->get_data(['pendidik_id' => $p['pendidik_id']], 'sub_kelas');
